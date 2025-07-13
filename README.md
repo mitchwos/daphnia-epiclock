@@ -26,7 +26,7 @@ workflow using [snakemake](https://snakemake.github.io/)
 
 `conda activate snakemake_env `
 
-[config.yaml](docs/config.yaml) : example of config file needed for snakemake
+[config.yaml](docs/config.yaml) : example of required configuration file
 
 [Snakefile](docs/Snakefile) : alignment workflow
 
