@@ -9,7 +9,7 @@ using ALICE3: University of Leicester HPC
 
 #### qualtiy control 
 
-[multiqc.sh](docs/multiqc.sh) -- trimming and [MultiQC](https://seqera.io/multiqc/) to assess read quality
+[multiqc.sh](docs/multiqc.sh) : trimming and [MultiQC](https://seqera.io/multiqc/) to assess read quality
 
 #### read alignment
 
@@ -19,12 +19,13 @@ preparing reference genomes with [Bismark](https://github.com/FelixKrueger/Bisma
 
 `/bin/Bismark-0.22.3/bismark_genome_prepatation lambda_genome`
 
+
 [snakemake](https://snakemake.github.io/) workflow
 
 `conda create --name snakemake_env`
 
 `conda activate snakemake_env `
 
-[Snakefile](docs/Snakefile) -- alignment workflow
+[Snakefile](docs/Snakefile) : alignment workflow
 
-[snakemake.slm](docs/snakemake.slm) -- slurm script to execute Snakefile
+[snakemake.slm](docs/snakemake.slm) : slurm script to execute Snakefile
