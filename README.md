@@ -20,7 +20,7 @@ preparing reference genomes with [Bismark](https://github.com/FelixKrueger/Bisma
 `/bin/Bismark-0.22.3/bismark_genome_prepatation lambda_genome`
 
 
-[snakemake](https://snakemake.github.io/) workflow
+workflow using [snakemake](https://snakemake.github.io/)
 
 `conda create --name snakemake_env`
 
