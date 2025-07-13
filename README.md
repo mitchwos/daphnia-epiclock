@@ -26,6 +26,8 @@ preparing reference genomes with [Bismark](https://github.com/FelixKrueger/Bisma
 
 `conda activate snakemake_env `
 
+[config.yaml](docs/config.yaml) : example of config file needed for snakemake
+
 [Snakefile](docs/Snakefile) : alignment workflow
 
 [snakemake.slm](docs/snakemake.slm) : slurm script to execute Snakefile
