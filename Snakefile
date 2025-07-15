@@ -5,7 +5,6 @@ rule all:
             expand('lambda.{sample}_1_bismark_bt2_pe.bam', sample=config["samples"]),
             expand('{sample}.CpG_report.merged_CpG_evidence.cov', sample=config["samples"])
       
-
 rule alignment:
     input:
         read1="{sample}_1.fq.gz",
@@ -15,7 +14,7 @@ rule alignment:
         "{sample}_1_bismark_bt2_pe.bam"
     shell:
         """
-        /scratch/evo-epi/mjw85/Liu/bin/Bismark-0.22.3/bismark --multicore 3 --genome genome_folder -1 {input.read1} -2 {input.read2}
+        /bin/Bismark-0.22.3/bismark --multicore 3 --genome genome_folder -1 {input.read1} -2 {input.read2}
         """
 
 rule lambda_alignment:
@@ -27,7 +26,7 @@ rule lambda_alignment:
         "lambda.{sample}_1_bismark_bt2_pe.bam"
     shell:
         """
-        /scratch/evo-epi/mjw85/Liu/bin/Bismark-0.22.3/bismark --multicore 3 --genome lambda_genome --prefix lambda -1 {input.read1} -2 {input.read2}
+        /bin/Bismark-0.22.3/bismark --multicore 3 --genome lambda_genome --prefix lambda -1 {input.read1} -2 {input.read2}
         """
 
 rule deduplication:
@@ -37,7 +36,7 @@ rule deduplication:
         "{sample}_1_bismark_bt2_pe.deduplicated.bam"
     shell:
         """
-        /scratch/evo-epi/mjw85/Liu/bin/Bismark-0.22.3/deduplicate_bismark {input}
+        /bin/Bismark-0.22.3/deduplicate_bismark {input}
         """
 
 rule meth_extraction:
@@ -47,7 +46,7 @@ rule meth_extraction:
         "{sample}_1_bismark_bt2_pe.bismark.cov.gz"
     shell:
         """
-        /scratch/evo-epi/mjw85/Liu/bin/Bismark-0.22.3/bismark_methylation_extractor \
+        /bin/Bismark-0.22.3/bismark_methylation_extractor \
         --multicore 3 --scaffolds \
         --no_overlap --comprehensive --merge_non_CpG --bedgraph --report --cytosine_report \
         --genome_folder genome_folder {input}
@@ -62,7 +61,7 @@ rule merge_cpgs:
         "{sample}"
     shell:
         """
-        /scratch/evo-epi/mjw85/Liu/bin/Bismark-0.22.3/coverage2cytosine \
+        /bin/Bismark-0.22.3/coverage2cytosine \
         -o {params} --merge_CpGs \
         --genome_folder genome_folder {input}
         """
