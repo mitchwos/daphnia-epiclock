@@ -26,6 +26,12 @@ workflow using [snakemake](https://snakemake.github.io/)
 
 `conda activate snakemake_env `
 
+`conda install bioconda::snakemake`
+
+`conda install bioconda::bowtie2`
+
+`conda install bioconda::samtools`
+
 [config.yaml](docs/config.yaml) : example of required configuration file
 
 [Snakefile](docs/Snakefile) : alignment workflow
