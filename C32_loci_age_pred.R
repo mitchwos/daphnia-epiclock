@@ -40,22 +40,19 @@ write.csv(ages, "~/Documents/IRP/R/clock/C32_ages.csv", row.names = FALSE)
 
 # Create age factor
 ages$group <- ifelse(grepl("OLD$", ages$sample), "OLD", "YOUNG")
+ages$group <- factor(ages$group, levels = c('YOUNG','OLD'))
 
-# Boxplot comparison of OLD and YOUNG predicted ages
+# Boxplot comparison of YOUNG and OLD predicted ages
 ggplot(ages, aes(x = group, y = age, fill = group)) +
   geom_boxplot() +
+  scale_fill_manual(values = c('#94DEFF','#00ADFF')) +
   geom_jitter(width=0.2, size=2, alpha=0.5) +
-  labs(title = "C32 - Predicted Age with Clock Loci",
-       x = "Group",
+  labs(title = "C32 Clock Loci Age Prediction",
+       x = "Age Group",
        y = "Predicted Age") +
+  theme_bw() +
   theme(
     plot.title = element_text(face = "bold", size = 16, hjust = 0.5),
-    axis.title = element_text(size = 14),  # Increase axis title font size
-    axis.text = element_text(size = 12),   # Increase axis text font size
-    legend.title = element_text(size = 14),  # Adjust legend title font size
-    legend.text = element_text(size = 12),   # Adjust legend text font size
-    legend.position = "top"  # Move legend to the top
-  )
-
-ggsave("~/Documents/IRP/R/clock/Hearn_meth/C32/C32_clock_loci.pdf")
-
+    axis.title = element_text(size = 12),
+    axis.text = element_text(size = 12)) + 
+  guides(fill = FALSE)
