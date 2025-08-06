@@ -1,3 +1,5 @@
+# CODE EDITED FROM EPICLOCK CREATED BY EAMONN MALLON
+
 # Remove unused objects and free up memory
 rm(list = ls())
 gc()  # Force garbage collection
