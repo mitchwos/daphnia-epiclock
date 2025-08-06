@@ -204,16 +204,15 @@ graph_data <- trans_data %>%
   mutate(pred_age = y_pred)
 
 # Step 9: Visualize predicted vs actual age
-
-ggplot(graph_data, aes(x = day, y = pred_age, color = diet, shape = diet)) +
+ggplot(graph_data, aes(x = day, y = pred_age, color = diet)) +
   geom_jitter(width = 0.4, height = 0.4, alpha = 0.7, size = 2.5) +  # Increase jitter width/height, reduce size
   geom_smooth(method = "lm", se = FALSE, linetype = "solid", linewidth = 1.2) +  # Use linewidth for line thickness
+  scale_color_manual(values = c('#57EB70','#EB6D57')) +
   labs(
-    title = "C32 - Epigenetic Age Prediction by Diet",
+    title = "C32 Epigenetic Age Prediction by Diet",
     x = "Actual Age (Days)",
     y = "Epigenetic Age (Days)",
-    color = "Diet",  # Change legend title to be more descriptive
-    shape = "Diet"   # Add shape legend title
+    color = "Diet",
   ) +
   theme_classic(base_size = 14) +  # Use a classic theme with base font size adjustment
   theme(
