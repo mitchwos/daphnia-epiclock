@@ -119,9 +119,7 @@ y_test <- y[-train_index]
 # Step 2: Define the train control (can be cross-validation or bootstrapping)
 # Define refined train control with more rigorous cross-validation
 train_control <- trainControl(
-  method = "loocv")
-  number = 15  # 15-fold cross-validation
-  repeats = 3   # Repeat 3 times for robustness
+  method = "loocv") # leave one out cross validation
 
 tuneGrid <- expand.grid(
   alpha = c(0.5),  # Ridge (0), ElasticNet (0.5), and Lasso (1)
