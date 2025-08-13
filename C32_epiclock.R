@@ -102,8 +102,8 @@ fwrite(trans_data, "~/Documents/IRP/R/clock/C32/C32_trans_data.csv")
 # Free up memory
 gc()  # Garbage collection to reclaim memory
 
-# Step 1: Filter the data to use 'Control', 'LF', and 'HF' for training
-train_data <- trans_data %>% filter(diet == "HF")
+# Filter the data 
+train_data <- trans_data
 numeric_data <- train_data[, -c("Row_ID", "day", "diet")]
 numeric_data[] <- lapply(numeric_data, as.numeric)
 x <- as.matrix(numeric_data)
@@ -202,28 +202,36 @@ graph_data <- trans_data %>%
   mutate(pred_age = y_pred)
 
 # Step 9: Visualize predicted vs actual age
-ggplot(graph_data, aes(x = day, y = pred_age, color = diet)) +
-  geom_jitter(width = 0.4, height = 0.4, alpha = 0.7, size = 2.5) +  # Increase jitter width/height, reduce size
-  geom_smooth(method = "lm", se = FALSE, linetype = "solid", linewidth = 1.2) +  # Use linewidth for line thickness
-  scale_color_manual(values = c('#57EB70','#EB6D57')) +
+ggplot(graph_data, aes(x = day, y = pred_age)) +
+  geom_abline(intercept = 0, slope = 1, color='grey') +
+  geom_jitter(width = 0.4, height = 0.4, alpha = 0.7, size = 2.5, color = '#00ADFF', fill = '#94DEFF') +  # Increase jitter width/height, reduce size
+  geom_smooth(method = "lm", se = FALSE, linetype = "solid", linewidth = 1.2, color = '#00ADFF') +  # Use linewidth for line thickness
   labs(
-    title = "C32 Epigenetic Age Prediction by Diet",
-    x = "Actual Age (Days)",
+    title = "C32 Epigenetic Clock",
+    x = "Chronological Age (Days)",
     y = "Epigenetic Age (Days)",
-    color = "Diet",
   ) +
   theme_classic(base_size = 14) +  # Use a classic theme with base font size adjustment
   theme(
     plot.title = element_text(face = "bold", size = 16, hjust = 0.5),  # Center and bold title
     axis.title = element_text(size = 14),  # Increase axis title font size
     axis.text = element_text(size = 12),   # Increase axis text font size
-    legend.title = element_text(size = 14),  # Adjust legend title font size
-    legend.text = element_text(size = 12),   # Adjust legend text font size
-    legend.position = "top"  # Move legend to the top
-  )
+  ) 
 
 ggsave("~/Documents/IRP/R/clock/C32/C32_model_figure.pdf")
 
+# Extract Spearman's rho
+cor_val <- cor.test(graph_data$day, graph_data$pred_age, method ='spearman')
+print(cor_val)
+
+# Extract slope and intercept of model
+fit <- lm(pred_age ~ day, data = graph_data)
+coef(fit)
+
+# Extract RSME
+rmse <- sqrt(mean(fit$residuals^2))
+print(rmse)
+                               
 # Extract coefficients from the final glmnet model within the caret object
 final_glmnet <- final_model$finalModel
 
