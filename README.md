@@ -8,7 +8,7 @@ using ALICE3: University of Leicester HPC
 
 #### quality control 
 
-multiqc.sh : trimming and [MultiQC](https://seqera.io/multiqc/) to assess read quality
+**multiqc.sh** : trimming and [MultiQC](https://seqera.io/multiqc/) to assess read quality
 
 #### alignment
 
@@ -29,26 +29,26 @@ workflow using [snakemake](https://snakemake.github.io/)
 
 `conda install bioconda::samtools`
 
-config.yaml : example of required configuration file
+**config.yaml** : example of required configuration file
 
-Snakefile : alignment workflow
+**Snakefile** : alignment workflow
 
-snakemake.slm : slurm script to execute Snakefile
+**snakemake.slm** : slurm script to execute Snakefile
 
 ## differential methylation
 
 specific to [Hearn *et al.* (2021)](https://doi.org/10.1186/s13072-020-00379-z) data
 
-Hearn_pca.R : PCA of methylation patterns
+**Hearn_pca.R** : PCA of methylation patterns
 
-Hearn_DSS_inputs.R : processing data in preparation for DSS
+**Hearn_DSS_inputs.R** : processing data in preparation for DSS
 
 specific to C32 strain 
 
-C32_DSS.R : DSS analysis to identify significant age-associated CpGs and methylation percentages
+**C32_DSS.R** : DSS analysis to identify significant age-associated CpGs and methylation percentages
 
 ## epigenetic age / predicted age
 
-C32_epiclock.R : epigenetic clock and extraction of clock loci (edited from code provided by [Eamonn Mallon](https://github.com/EamonnMallon/))
+**C32_epiclock.R** : epigenetic clock and extraction of clock loci (edited from code provided by [Eamonn Mallon](https://github.com/EamonnMallon/))
 
-C32_loci_age_pred.R : predicting age using methylation levels and Bham2 clock loci
+**C32_loci_age_pred.R** : predicting age using methylation levels and Bham2 clock loci
