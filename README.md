@@ -39,9 +39,9 @@ workflow using [snakemake](https://snakemake.github.io/)
 
 specific to [Hearn *et al.* (2021)](https://doi.org/10.1186/s13072-020-00379-z) data
 
-[Hearn_pca.R](docs/Hearn_pca) : PCA of methylation patterns
+[Hearn_pca.R](docs/Hearn_pca.R) : PCA of methylation patterns
 
-[Hearn_DSS_inputs.R](docs/Hearn_DSS_inputs) : processing data in preparation for DSS
+[Hearn_DSS_inputs.R](docs/Hearn_DSS_inputs.R) : processing data in preparation for DSS
 
 specific to C32 strain 
 
